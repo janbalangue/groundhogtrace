@@ -1,0 +1,14 @@
+{
+  "serviceName": "orders-service",
+  "targetService": "fake-crm-api",
+  "method": "POST",
+  "targetUrl": "http://fake-crm-api:8081/buggy/customers",
+  "requestHeaders": {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer real-token-that-should-not-be-stored"
+  },
+  "requestBody": "{\"customerId\":\"cust-123\",\"email\":\"broken-email\",\"apiKey\":\"secret-key-123\"}",
+  "responseStatus": 500,
+  "responseBody": "{\"error\":\"NullPointerException while normalizing customer email\"}",
+  "traceId": "trace-demo-001"
+}

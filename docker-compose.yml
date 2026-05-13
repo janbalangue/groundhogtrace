@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: groundhogtrace
+      POSTGRES_USER: groundhog
+      POSTGRES_PASSWORD: groundhog
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U groundhog -d groundhogtrace"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  fake-crm-api:
+    build:
+      context: .
+      dockerfile: services/fake-crm-api/Dockerfile
+    ports:
+      - "8081:8081"
+
+  groundhogtrace-api:
+    build:
+      context: .
+      dockerfile: services/groundhogtrace-api/Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/groundhogtrace
+      SPRING_DATASOURCE_USERNAME: groundhog
+      SPRING_DATASOURCE_PASSWORD: groundhog
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      fake-crm-api:
+        condition: service_started
