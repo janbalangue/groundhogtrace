@@ -14,7 +14,7 @@ This project follows semantic versioning where practical.
 - Clarify public API stability and intended usage.
 - Consider a maintenance release if dependency, documentation, or build updates are needed.
 
-## [0.1.0] - 2026-02-XX
+## [0.1.0] - 2026-05-12
 
 ### Added
 
