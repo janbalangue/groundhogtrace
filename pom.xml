@@ -19,6 +19,14 @@
     <name>GroundhogTrace</name>
     <description>Failure replay platform for REST integrations</description>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <modules>
         <module>services/groundhogtrace-api</module>
         <module>services/fake-crm-api</module>
